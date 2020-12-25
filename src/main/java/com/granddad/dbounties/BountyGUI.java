@@ -1,5 +1,6 @@
 package com.granddad.dbounties;
 
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -19,11 +20,14 @@ import static org.bukkit.Bukkit.getLogger;
 public class BountyGUI implements Listener
 {
     private final Inventory inv;
+    private final Economy econ;
 
-    public BountyGUI()
+    public BountyGUI(Economy econ)
     {
         // Create a new inventory, with no owner (as this isn't a real inventory), a size of nine, called example
         inv = Bukkit.createInventory(null, 9, "BountyGUI");
+
+        this.econ = econ;
 
         // Put the items into the inventory
         initializeItems();
