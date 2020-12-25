@@ -14,6 +14,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.HashMap;
+
+import com.granddad.dbounties.bounties.*;
 
 import static org.bukkit.Bukkit.getLogger;
 
@@ -21,6 +24,7 @@ public class BountyGUI implements Listener
 {
     private final Inventory inv;
     private final Economy econ;
+    public final HashMap<Integer, Bounty> bountyMap = new HashMap<>();
 
     public BountyGUI(Economy econ)
     {
@@ -28,6 +32,11 @@ public class BountyGUI implements Listener
         inv = Bukkit.createInventory(null, 9, "BountyGUI");
 
         this.econ = econ;
+
+        for (int i = 1; i < 8; i++)
+        {
+            bountyMap.put(i, new ConsumeBounty(555, Material.DIAMOND, 32));
+        }
 
         // Put the items into the inventory
         initializeItems();

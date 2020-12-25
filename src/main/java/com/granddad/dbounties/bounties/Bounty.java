@@ -1,6 +1,8 @@
 package com.granddad.dbounties.bounties;
 
-abstract class Bounty
+import org.bukkit.entity.HumanEntity;
+
+public abstract class Bounty
 {
     private final int timer;
 
@@ -10,4 +12,6 @@ abstract class Bounty
     {
         this.timer = timer;
     }
+
+    public abstract void GiveToPlayer(HumanEntity player);
 }
