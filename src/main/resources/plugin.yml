@@ -1,0 +1,11 @@
+name: DBounties
+version: ${project.version}
+main: com.granddad.dbounties.DBounties
+api-version: 1.16
+authors: [ Cade83, Windows10CE ]
+description: Destiny-esque bounties
+
+commands:
+  bounties:
+    description: Checks current bounties.
+    usage: /<command>
