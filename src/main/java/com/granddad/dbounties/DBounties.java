@@ -3,7 +3,8 @@ package com.granddad.dbounties;
 import com.granddad.dbounties.commands.BountyGUICommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class DBounties extends JavaPlugin {
+public final class DBounties extends JavaPlugin
+{
     public static BountyGUI bgui = new BountyGUI();
 
     @Override

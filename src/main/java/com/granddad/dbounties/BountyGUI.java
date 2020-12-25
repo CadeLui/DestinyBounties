@@ -33,7 +33,7 @@ public class BountyGUI implements Listener
     public void initializeItems()
     {
         inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, " "));
-        inv.addItem(createGuiItem(Material.ENCHANTED_BOOK, "Weekly 1", "Do thimbg"));
+        inv.addItem(createGuiItem(Material.ENCHANTED_BOOK, "Weekly", "Do thimbg"));
         inv.addItem(createGuiItem(Material.BOOK, "Daily 1", "Do thimbg 2"));
         inv.addItem(createGuiItem(Material.BOOK, "Daily 2", "Do thimbg 3"));
         inv.addItem(createGuiItem(Material.BOOK, "Daily 3", "Do thimbg 4"));

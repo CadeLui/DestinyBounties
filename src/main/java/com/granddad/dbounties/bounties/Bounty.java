@@ -1,7 +1,9 @@
-package com.granddad.dbounties;
+package com.granddad.dbounties.bounties;
 
-public class Bounty {
+abstract class Bounty
+{
     private final int timer;
+
     public Bounty(int timer)
     {
         this.timer = timer;
