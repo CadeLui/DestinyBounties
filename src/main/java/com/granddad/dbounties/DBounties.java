@@ -12,7 +12,7 @@ public final class DBounties extends JavaPlugin
     {
         // Plugin startup logic
         getLogger().info("Entering orbit...");
-        this.getCommand("bounties").setExecutor(new BountyGUICommand());
+        this.getCommand("bounties").setExecutor(new BountyGUICommand(econ));
         getServer().getPluginManager().registerEvents(bgui, this);
         getLogger().info("Orbit entered.");
     }

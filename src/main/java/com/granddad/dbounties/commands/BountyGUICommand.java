@@ -9,7 +9,13 @@ import org.bukkit.entity.Player;
 
 public class BountyGUICommand implements CommandExecutor
 {
-    // This method is called, when somebody uses our command
+    private final Economy econ;
+
+    public BountyGUICommand(Economy econ)
+    {
+        this.econ = econ;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
