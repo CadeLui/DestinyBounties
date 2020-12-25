@@ -90,12 +90,15 @@ public class BountyGUI implements Listener
 
         // Using slots click is a best option for your inventory click's
         p.sendMessage("You clicked at slot " + e.getRawSlot());
-        switch (e.getRawSlot()) {
-            case 2:
-                break;
-            case 3:
-                break;
-        }
+
+        final int slotNum = e.getRawSlot();
+
+        if (slotNum < 1 || slotNum > 7)
+            return;
+
+        final Bounty bounty = bountyMap.get(slotNum);
+
+        bounty.GiveToPlayer(e.getWhoClicked());
     }
 
     // Cancel dragging in our inventory
