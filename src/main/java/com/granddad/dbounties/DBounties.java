@@ -9,10 +9,13 @@ import net.milkbowl.vault.economy.EconomyResponse;
 public final class DBounties extends JavaPlugin
 {
     public static BountyGUI bgui;
+    public static DBounties Instance;
 
     @Override
     public void onEnable()
     {
+        Instance = this;
+
         Economy econ = getServer().getServicesManager().getRegistration(Economy.class).getProvider();
         bgui = new BountyGUI(econ);
 
