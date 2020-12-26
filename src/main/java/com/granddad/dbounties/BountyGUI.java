@@ -2,9 +2,9 @@ package com.granddad.dbounties;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.Material;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -18,8 +18,6 @@ import java.util.HashMap;
 
 import com.granddad.dbounties.bounties.*;
 
-import static org.bukkit.Bukkit.getLogger;
-
 public class BountyGUI implements Listener
 {
     private final Inventory inv;
@@ -32,10 +30,18 @@ public class BountyGUI implements Listener
         inv = Bukkit.createInventory(null, 9, "BountyGUI");
 
         this.econ = econ;
+        Bounty.Econ = econ;
 
         for (int i = 1; i < 8; i++)
         {
-            bountyMap.put(i, new ConsumeBounty(555, Material.DIAMOND, 32));
+            if (i == 5)
+                bountyMap.put(i, new MineBounty( 104, 555, Material.IRON_BLOCK, 5));
+            if (i == 6)
+                bountyMap.put(i, new MineBounty( 104, 555, Material.IRON_BLOCK, 5));
+            if (i == 7)
+                bountyMap.put(i, new KillBounty(777, 555, EntityType.PIG, 2));
+            if (i != 6 && i != 7 && i != 5)
+                bountyMap.put(i, new ConsumeBounty(52, 555, Material.DIAMOND, 6));
         }
 
         // Put the items into the inventory
