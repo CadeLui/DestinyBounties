@@ -22,27 +22,14 @@ public class MineBounty extends Bounty
     public MineBounty(int amount, int timer, Material blockToBreak, int count)
     {
         super(amount, timer);
+        super.DefaultValue = 0;
         BlockToBreak = blockToBreak;
         Count = count;
 
         Lore.add("Mine " + "0/" + Count + " " + BlockToBreak.name());
+        Lore.add("Value: $" + amount);
         Book = new ItemStack(Material.BOOK);
         Book.setLore(Lore);
-    }
-
-    @Override
-    public void GiveToPlayer(HumanEntity player)
-    {
-        if (PlayersWithBounty.containsKey(player.getUniqueId()))
-            return;
-        /*
-        item = new ItemStack(Material.BOOK);
-        ArrayList<String> lore = new ArrayList<>();
-        lore.add("Mine " + "0/" + Count + " " + BlockToBreak.name());
-        item.setLore(lore);
-        */
-        player.getInventory().addItem(Book);
-        PlayersWithBounty.put(player.getUniqueId(), 0);
     }
 
     @EventHandler
@@ -110,7 +97,6 @@ public class MineBounty extends Bounty
 
         int a = (int)PlayersWithBounty.get(e.getPlayer().getUniqueId());
         if (a >= Count) {
-            e.getPlayer().getInventory().remove(e.getPlayer().getInventory().getItemInMainHand());
             super.Submit(e.getPlayer());
             // you win
             Bukkit.broadcastMessage(ChatColor.DARK_AQUA + (e.getPlayer().getDisplayName() + " listens to 100 gecs"));

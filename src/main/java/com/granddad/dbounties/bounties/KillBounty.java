@@ -24,26 +24,14 @@ public class KillBounty extends Bounty
     public KillBounty(int amount, int timer, EntityType thingToKill, int count)
     {
         super(amount, timer);
+        super.DefaultValue = 0;
         ThingToKill = thingToKill;
         Count = count;
 
         Lore.add("Kill " + "0/" + Count + " " + ThingToKill.name());
+        Lore.add("Value: $" + amount);
         Book = new ItemStack(Material.BOOK);
         Book.setLore(Lore);
-    }
-
-    @Override
-    public void GiveToPlayer(HumanEntity player) {
-        if (PlayersWithBounty.containsKey(player.getUniqueId()))
-            return;
-        /*
-        ItemStack item = new ItemStack(Material.BOOK);
-        ArrayList<String> lore = new ArrayList<>();
-        lore.add("Kill " + "0/" + Count + " " + ThingToKill.name());
-        item.setLore(lore);
-         */
-        player.getInventory().addItem(Book);
-        PlayersWithBounty.put(player.getUniqueId(), 0);
     }
 
     @EventHandler
@@ -101,7 +89,6 @@ public class KillBounty extends Bounty
 
         int a = (int)PlayersWithBounty.get(e.getPlayer().getUniqueId());
         if (a >= Count) {
-            e.getPlayer().getInventory().remove(e.getPlayer().getInventory().getItemInMainHand());
             super.Submit(e.getPlayer());
             // you win
             Bukkit.broadcastMessage(ChatColor.DARK_RED + (e.getPlayer().getDisplayName() + " has wasted time"));

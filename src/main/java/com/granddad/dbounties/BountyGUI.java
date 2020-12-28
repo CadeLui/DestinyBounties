@@ -19,8 +19,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class BountyGUI implements Listener
 {
@@ -56,17 +58,17 @@ public class BountyGUI implements Listener
     public void initializeItems()
     {
         Bounty currentBounty;
-        inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, " "));
+        inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, " ", new ArrayList<>()));
         for (int i = 1; i < 8; i++)
         {
             currentBounty = bountyMap.get(i);
-            inv.addItem(createGuiItem(currentBounty.Book.getType(), "Bounty" + i, String.valueOf(currentBounty.Lore)));
+            inv.addItem(createGuiItem(currentBounty.Book.getType(), "Bounty" + i, currentBounty.Lore));
         }
-        inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, "  "));
+        inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, "  ", new ArrayList<>()));
     }
 
     // Nice little method to create a gui item with a custom name, and description
-    protected ItemStack createGuiItem(final Material material, final String name, final String... lore)
+    protected ItemStack createGuiItem(final Material material, final String name, final List<String> lore)
     {
         final ItemStack item = new ItemStack(material, 1);
         final ItemMeta meta = item.getItemMeta();
@@ -75,7 +77,7 @@ public class BountyGUI implements Listener
         meta.setDisplayName(name);
 
         // Set the lore of the item
-        meta.setLore(Arrays.asList(lore));
+        meta.setLore(lore);
 
         item.setItemMeta(meta);
 
