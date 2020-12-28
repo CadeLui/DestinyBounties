@@ -24,20 +24,25 @@ public class KillBounty extends Bounty
     public KillBounty(int amount, int timer, EntityType thingToKill, int count)
     {
         super(amount, timer);
-
         ThingToKill = thingToKill;
         Count = count;
+
+        Lore.add("Kill " + "0/" + Count + " " + ThingToKill.name());
+        Book = new ItemStack(Material.BOOK);
+        Book.setLore(Lore);
     }
 
     @Override
     public void GiveToPlayer(HumanEntity player) {
         if (PlayersWithBounty.containsKey(player.getUniqueId()))
             return;
+        /*
         ItemStack item = new ItemStack(Material.BOOK);
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Kill " + "0/" + Count + " " + ThingToKill.name());
         item.setLore(lore);
-        player.getInventory().addItem(item);
+         */
+        player.getInventory().addItem(Book);
         PlayersWithBounty.put(player.getUniqueId(), 0);
     }
 

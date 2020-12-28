@@ -1,10 +1,16 @@
 package com.granddad.dbounties;
 
+import com.granddad.dbounties.bounties.Bounty;
+import com.granddad.dbounties.bounties.ConsumeBounty;
+import com.granddad.dbounties.bounties.KillBounty;
+import com.granddad.dbounties.bounties.MineBounty;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
 import org.bukkit.Material;
-import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,8 +21,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.HashMap;
-
-import com.granddad.dbounties.bounties.*;
 
 public class BountyGUI implements Listener
 {
@@ -51,14 +55,13 @@ public class BountyGUI implements Listener
     // You can call this whenever you want to put the items in
     public void initializeItems()
     {
+        Bounty currentBounty;
         inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, " "));
-        inv.addItem(createGuiItem(Material.ENCHANTED_BOOK, "Weekly", "Do thimbg"));
-        inv.addItem(createGuiItem(Material.BOOK, "Daily 1", "Do thimbg 2"));
-        inv.addItem(createGuiItem(Material.BOOK, "Daily 2", "Do thimbg 3"));
-        inv.addItem(createGuiItem(Material.BOOK, "Daily 3", "Do thimbg 4"));
-        inv.addItem(createGuiItem(Material.BOOK, "Daily 4", "Do thimbg 5"));
-        inv.addItem(createGuiItem(Material.BOOK, "Daily 5", "Do thimbg 6"));
-        inv.addItem(createGuiItem(Material.PAPER, "Repeatable", "Do thimbg 7"));
+        for (int i = 1; i < 8; i++)
+        {
+            currentBounty = bountyMap.get(i);
+            inv.addItem(createGuiItem(currentBounty.Book.getType(), "Bounty" + i, String.valueOf(currentBounty.Lore)));
+        }
         inv.addItem(createGuiItem(Material.GRAY_STAINED_GLASS_PANE, "  "));
     }
 

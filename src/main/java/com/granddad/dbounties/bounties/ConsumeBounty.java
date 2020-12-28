@@ -23,21 +23,27 @@ public class ConsumeBounty extends Bounty
     public ConsumeBounty(int amount, int timer, Material item, int capacity)
     {
         super(amount, timer);
-
         Item = item;
         Capacity = capacity;
+
+        Lore.add("Obtain " + Capacity + " " + Item.name());
+        Lore.add("These will be consumed.");
+        Book = new ItemStack(Material.BOOK);
+        Book.setLore(Lore);
     }
 
     @Override
     public void GiveToPlayer(HumanEntity player) {
         if (PlayersWithBounty.containsKey(player.getUniqueId()))
             return;
+        /*
         ItemStack item = new ItemStack(Material.BOOK);
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Obtain " + Capacity + " " + Item.name());
         lore.add("These will be consumed.");
         item.setLore(lore);
-        player.getInventory().addItem(item);
+         */
+        player.getInventory().addItem(Book);
         PlayersWithBounty.put(player.getUniqueId(), null);
     }
 

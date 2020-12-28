@@ -1,10 +1,8 @@
 package com.granddad.dbounties;
 
 import com.granddad.dbounties.commands.BountyGUICommand;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public final class DBounties extends JavaPlugin
 {
@@ -14,13 +12,14 @@ public final class DBounties extends JavaPlugin
     @Override
     public void onEnable()
     {
+        getLogger().info("Entering orbit...");
         Instance = this;
 
         Economy econ = getServer().getServicesManager().getRegistration(Economy.class).getProvider();
         bgui = new BountyGUI(econ);
 
         // Plugin startup logic
-        getLogger().info("Entering orbit...");
+        getLogger().info("Registering commands and events...");
         this.getCommand("bounties").setExecutor(new BountyGUICommand(econ));
         getServer().getPluginManager().registerEvents(bgui, this);
         getLogger().info("Orbit entered.");
