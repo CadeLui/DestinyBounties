@@ -40,14 +40,7 @@ public class BountyGUI implements Listener
 
         for (int i = 1; i < 8; i++)
         {
-            if (i == 5)
-                bountyMap.put(i, new MineBounty( 104, 555, Material.IRON_BLOCK, 5));
-            if (i == 6)
-                bountyMap.put(i, new MineBounty( 104, 555, Material.IRON_BLOCK, 5));
-            if (i == 7)
-                bountyMap.put(i, new KillBounty(777, 555, EntityType.PIG, 2));
-            if (i != 6 && i != 7 && i != 5)
-                bountyMap.put(i, new ConsumeBounty(52, 555, Material.DIAMOND, 6));
+            bountyMap.put(i, new ConsumeBounty(48, 555, Material.DIAMOND, 4));
         }
 
         // Put the items into the inventory
