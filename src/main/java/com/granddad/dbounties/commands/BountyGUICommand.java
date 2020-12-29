@@ -20,7 +20,10 @@ public class BountyGUICommand implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
-        DBounties.bgui.openInventory((HumanEntity) ((Player) sender));
-        return true;
+        if (sender instanceof Player) {
+            DBounties.bgui.openInventory((HumanEntity) ((Player) sender));
+            return true;
+        }
+        return false;
     }
 }
